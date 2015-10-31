@@ -58,4 +58,4 @@ filetype plugin indent on
 
 call neobundle#end()
 
-colorscheme jellybeans
+colorscheme railscasts
