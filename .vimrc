@@ -17,24 +17,45 @@ set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set wildmenu
 
-let g:solarized_termcolors=256
-colorscheme solarized
-
 "Neo Bundle Setting
 set nocompatible
 filetype plugin indent off
-
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#begin(expand('~/.vim/bundle'))
-endif 
+set runtimepath+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "Bundles
-""Color Scheme 
+" Color Schemes
+"  solarized
 NeoBundle 'altercation/vim-colors-solarized'
+"  mustang
+NeoBundle 'croaker/mustang-vim'
+"  wombat
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+"  jellybeans
+NeoBundle 'nanotech/jellybeans.vim'
+"  lucius
+NeoBundle 'vim-scripts/Lucius'
+"  zenburn
+NeoBundle 'vim-scripts/Zenburn'
+"  mrkn256
+NeoBundle 'mrkn/mrkn256.vim'
+"  railscasts
+NeoBundle 'jpo/vim-railscasts-theme'
+"  pyte
+NeoBundle 'therubymug/vim-pyte'
+"  molokai
+NeoBundle 'tomasr/molokai'
+
+" Use Unite.vim when show index to Color Scheme 
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
+
 NeoBundle 'Shougo/neosnippet.vim'
 
 filetype plugin indent on
+
+call neobundle#end()
+
+colorscheme jellybeans
