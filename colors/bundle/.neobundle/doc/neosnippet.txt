@@ -1,7 +1,7 @@
 *neosnippet.txt*
 		The neo-snippet plugin contains snippet source
 
-Version: 4.2
+Version: 5.0
 Author: Shougo <Shougo.Matsu@gmail.com>
 License: MIT license  {{{
     Permission is hereby granted, free of charge, to any person obtaining
@@ -88,9 +88,9 @@ COMMANDS 					*neosnippet-commands*
 
 					*:NeoSnippetEdit*
 :NeoSnippetEdit [{options}] [filetype]
-		Opens the snippets for a given [filetype] to edit. It automatically
-		selects the current buffer's filetype unless you specify
-		another one by [filetype].
+		Opens the snippets for a given [filetype] to edit. It
+		automatically selects the current buffer's filetype unless you
+		specify another one by [filetype].
 
 		If the path to [filetype] snippets is a directory, it
 		automatically selects "[filetype].snip" in the [filetype]
@@ -103,6 +103,9 @@ COMMANDS 					*neosnippet-commands*
 		The following parameters can be used as {options} to modify
 		the behavior of the command. Note: You must escape spaces with
 		a backslash "\".
+
+		Note: You must set |g:neosnippet#snippets_directory| before
+		using it.
 
 					*neosnippet-edit-options-vertical*
 		-vertical
@@ -222,6 +225,13 @@ g:neosnippet#enable_conceal_markers
 
 		The default value is 1.
 
+					*g:neosnippet#enable_complete_done*
+g:neosnippet#enable_complete_done
+		If this variable is not 0, neosnippet will expand the function
+		prototype when |CompleteDone| autocmd.
+
+		The default value is 0.
+
 						*g:neosnippet#scope_aliases*
 g:neosnippet#scope_aliases
 		It is a dictionary that associating certain filetypes with
@@ -319,19 +329,32 @@ neosnippet#expandable_or_jumpable()
 		\ neosnippet#expandable_or_jumpable() ?
 		\ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
 <
-					*neosnippet#anonymous()*
-neosnippet#anonymous({snippet}, [{options}])
+						*neosnippet#anonymous()*
+neosnippet#anonymous({snippet})
 		It defines anonymous snippet.
 		{snippet} is snippet definition.
 		{options} is snippet option.
 		You can expand snippet definition without defining snippet
 		trigger.
-		Note: You cannot use it in |map-<expr>|.  It changes the
-		buffer text.
+		Note: You can use this function with |map-<expr>|.
 >
 		inoremap <silent> ((
 		\ <C-r>=neosnippet#anonymous('\left(${1}\right)${0}')<CR>
+		" OR
+		inoremap <expr><silent> ((
+		\ neosnippet#anonymous('\left(${1}\right)${0}')
 <
+						*neosnippet#expand()*
+neosnippet#expand({trigger})
+		It expands the snippet trigger.
+		{trigger} is snippet trigger.
+		Note: You can use this function with |map-<expr>|.
+>
+		inoremap <silent> test
+		\ i<C-r>=neosnippet#expand('date_english')<CR>
+		nnoremap <silent><expr> test
+		\ neosnippet#expand('date_english')
+
 ------------------------------------------------------------------------------
 FUNCTIONS					*neosnippet-functions*
 
