@@ -1,4 +1,7 @@
 autoload -Uz compinit
+# compinit
+zstyle ':completion:*:default' menu select=1
+
 compinit -u
 if [ -e /usr/local/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
@@ -17,10 +20,12 @@ zstyle ':completion:*' list-colors ''
 # コマンドのスペルを訂正
 setopt correct
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/python@3.10/bin:$PATH"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH="/usr/local/opt/py  thon@3.10/bin:$PATH"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
 
 # alias python=/usr/bin/python3
 alias pip=/usr/bin/pip3
 alias dc=docker-compose
+alias dc-vuls=‘docker compose down --rmi all --volumes’
